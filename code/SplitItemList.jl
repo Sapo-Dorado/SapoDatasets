@@ -29,3 +29,21 @@ function SplitImageList_byrandpct(il::ImageList, valpct::Float64=0.2)::SplitImag
     perm = randperm(length(il))
     SplitImageList(il.items, il.get, il.size, sort(perm[numitems+1:end]), sort(perm[1:numitems]))
 end
+
+#= splits by a function that takes the object stored in il.items (most likely a path)
+and returns true if the item should be in the validation set and false if it should be
+in the training set =#
+function SplitImageList_byfunc(il::ImageList, f)::SplitImageList
+    train = []
+    valid = []
+    idx = 1
+    for i in il.items
+        if (f(i))
+            push!(valid, idx)
+        else
+            push!(train, idx)
+        end
+        idx += 1
+    end
+    SplitImageList(il.items, il.get, il.size, train, valid)
+end

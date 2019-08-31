@@ -31,3 +31,12 @@ function LabeledImageList_fromfolder(sil::SplitImageList, directoriesup::Int=1, 
     end
     LabeledImageList(sil.items, labels, sil.get, gety, sil.size, sil.train, sil.valid)
 end
+
+#labels each x by a function that takes each element of x as an argument and returns a label for that x
+function LabeledImageList_fromfunc(sil::SplitImageList, f, gety=identity)
+    labels = []
+    for i in sil.items
+        push!(labels, f(i))
+    end
+    LabeledImageList(sil.items, labels, sil.get, gety, sil.size, sil.train, sil.valid)
+end
