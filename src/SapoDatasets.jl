@@ -1,6 +1,6 @@
 module SapoDatasets
 
-using FileIO, Images, Random
+using FileIO, Images, Random, Flux
 
 include("ItemList.jl")
 export ImageList, ImageList_fromfolder
