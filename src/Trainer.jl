@@ -33,12 +33,14 @@ function fit(trainer::Trainer, epochs::Int)
 end
 
 function fit_one_cycle(trainer::Trainer, epochs::Int; max_lr=1e-3, moms=(.95,.85))
-    if isa(trainer.cbs, Array)
+    old_cbs = trainer.cbs
+    if isa(old_cbs, Array)
         trainer.cbs = [trainer.cbs..., one_cycle_cb(trainer, epochs, max_lr, moms)]
     else
         trainer.cbs = [trainer.cbs, one_cycle_cb(trainer, epochs, max_lr, moms)]
     end
     fit(trainer, epochs)
+    trainer.cbs = old_cbs
 end
 
 #returns the model's prediction for a given input
