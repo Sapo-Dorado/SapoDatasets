@@ -41,6 +41,7 @@ function fit_one_cycle(trainer::Trainer, epochs::Int; max_lr=1e-3, moms=(.95,.85
     end
     fit(trainer, epochs)
     trainer.cbs = old_cbs
+    print("Done Training\n")
 end
 
 #returns the model's prediction for a given input
