@@ -24,7 +24,7 @@ mutable struct LabeledImageList <: LabeledItemList
 end
 
 #constructs a LabeledImageList using the foldername as a label
-function LabeledImageList_fromfolder(sil::SplitImageList, directoriesup::Int=1, gety=identity)::LabeledImageList
+function LabeledImageList_fromfolder(sil::SplitImageList; directoriesup::Int=1, gety=identity)::LabeledImageList
     labels = []
     for i in sil.items
         push!(labels, split(i,"/")[end-directoriesup])

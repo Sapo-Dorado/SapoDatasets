@@ -14,6 +14,9 @@ export LabeledImageList, LabeledImageList_fromfolder, LabeledImageList_fromfunc
 include("Dataset.jl")
 export ImageDataset, getimage_dset
 
+include("Trainer.jl)
+export Trainer, fit, fit_one_cycle, predict 
+
 include("Utils.jl")
 export transform
 

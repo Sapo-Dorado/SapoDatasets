@@ -1,7 +1,7 @@
 name = "SapoDatasets"
 uuid = "64cfb1f5-9fce-5e8b-b8b4-72344bdf992e"
 authors = ["Nicholas Brown <countdooku.steak@gmail.com>"]
-version = "0.1.0"
+version = "0.2.0"
 
 [deps]
 FileIO = "5789e2e9-d7fb-5bc7-8068-2c6fae9b9549"

@@ -8,7 +8,7 @@ function Base.getindex(dataset::Dataset, idx::Int)
 end
 
 Base.firstindex(dataset::Dataset) = 1
-Base.lastindex(dataset::Dataset) = cld(length(dataset), dataset.bs)
+Base.lastindex(dataset::Dataset) = length(dataset) 
 Base.length(dataset::Dataset) = cld(length(dataset.x), dataset.bs)
 function Base.iterate(iter::Dataset)
     iter.randorder = randperm(length(iter.x))

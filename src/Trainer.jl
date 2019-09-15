@@ -8,7 +8,7 @@ mutable struct Trainer
     cbs
 end
 
-function Trainer(data, model, loss, opt=ADAM(), cbs=()->())
+function Trainer(data, model, loss; opt=ADAM(), cbs=()->())
     Trainer(data, model, loss, opt, params(model), cbs)
 end
 
@@ -32,8 +32,12 @@ function fit(trainer::Trainer, epochs::Int)
     end
 end
 
-function fit_one_cycle(trainer::Trainer, epochs::Int)
-    trainer.cbs = [trainer.cbs..., one_cycle_cb(trainer, epochs)]
+function fit_one_cycle(trainer::Trainer, epochs::Int; max_lr=1e-3, moms=(.95,.85))
+    if isa(trainer.cbs, Array)
+        trainer.cbs = [trainer.cbs..., one_cycle_cb(trainer, epochs, max_lr, moms)]
+    else
+        trainer.cbs = [trainer.cbs, one_cycle_cb(trainer, epochs, max_lr, moms)]
+    end
     fit(trainer, epochs)
 end
 

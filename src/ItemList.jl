@@ -59,7 +59,7 @@ end
 ImageList(items, size::Int) = ImageList(items, imagelistget, size)
 
 #construct an ImageList from images in a folder
-function ImageList_fromfolder(folderpath::String, size::Int=500, recurse::Bool=true, suffixes::Array{String,1}=defaultsuffixes)::ImageList
+function ImageList_fromfolder(folderpath::String; size::Int=500, recurse::Bool=true, suffixes::Array{String,1}=defaultsuffixes)::ImageList
     #make sure there are no non-image files in the directory. It automatically ignores hidden directories.
     ImageList(getfiles(folderpath, recurse, suffixes), size)
 end
