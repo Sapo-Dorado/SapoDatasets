@@ -36,6 +36,6 @@ end
 
 function get_cuimage_dset(list::LabeledItemList, bs::Int, set::String="train")::ImageDataset
     idxs = getfield(list, Symbol(set))
-    getx(x) = CuArray(list.getx(x))
+    getx(il, x) = CuArray(list.getx(il,x))
     ImageDataset(list.x[idxs], list.y[idxs], getx, list.gety, list.size, set, bs, randperm(length(idxs)))
 end
