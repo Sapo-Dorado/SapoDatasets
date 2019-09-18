@@ -1,6 +1,6 @@
 module SapoDatasets
 
-using FileIO, Images, Random, Flux
+using FileIO, Images, Random, Flux, CuArrays
 
 include("ItemList.jl")
 export ImageList, ImageList_fromfolder
@@ -12,7 +12,7 @@ include("LabeledItemList.jl")
 export LabeledImageList, LabeledImageList_fromfolder, LabeledImageList_fromfunc
 
 include("Dataset.jl")
-export ImageDataset, getimage_dset
+export ImageDataset, getimage_dset, get_cuimage_dset
 
 include("Trainer.jl")
 export Trainer, fit, fit_one_cycle, predict 
