@@ -30,12 +30,12 @@ end
 
 #gets an ImageDataset from a LabeledItemList, the default set is the training set, pass in "valid" for set to get the validation dataset
 function getimage_dset(list::LabeledItemList, bs::Int, set::String="train")::ImageDataset
-    idxs = getfield(list, :set)
+    idxs = getfield(list, Symbol(set))
     ImageDataset(list.x[idxs], list.y[idxs], list.getx, list.gety, list.size, set, bs, randperm(length(idxs)))
 end
 
 function get_cuimage_dset(list::LabeledItemList, bs::Int, set::String="train")::ImageDataset
-    idxs = getfield(list, :set)
+    idxs = getfield(list, Symbol(set))
     getx(x) = CuArray(list.getx(x))
     ImageDataset(list.x[idxs], list.y[idxs], getx, list.gety, list.size, set, bs, randperm(length(idxs)))
 end
