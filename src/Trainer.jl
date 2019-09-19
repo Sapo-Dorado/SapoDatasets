@@ -9,10 +9,6 @@ mutable struct Trainer
 end
 
 function Trainer(data, model, loss; opt=ADAM(), cbs=()->())
-    if(data isa CuImageDataset)
-        print("yipee")
-        model = mapleaves(cu, model)
-    end
     Trainer(data, model, loss, opt, params(model), cbs)
 end
 

@@ -48,5 +48,6 @@ end
 function get_cuimage_dset(list::LabeledItemList, bs::Int, set::String="train")::CuImageDataset
     idxs = getfield(list, Symbol(set))
     getx(il, x) = CuArray(list.getx(il,x))
+    print("Make sure you call mapleaves(cu, model) on your model")
     CuImageDataset(list.x[idxs], list.y[idxs], getx, list.gety, list.size, set, bs, randperm(length(idxs)))
 end

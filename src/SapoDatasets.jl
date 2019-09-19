@@ -1,6 +1,10 @@
 module SapoDatasets
 
-using FileIO, Images, Random, Flux, CuArrays
+using FileIO, Images, Random, Flux
+using CUDAapi
+if has_cuda()
+    using CudaArrays
+end
 
 include("ItemList.jl")
 export ImageList, ImageList_fromfolder
