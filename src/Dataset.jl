@@ -22,9 +22,9 @@ mutable struct ImageDataset <: Dataset
     y
     getx
     gety
-    size::Int
-    set::String
-    bs::Int
+    size::int
+    set::string
+    bs::int
     randorder
 end
 
@@ -34,8 +34,19 @@ function getimage_dset(list::LabeledItemList, bs::Int, set::String="train")::Ima
     ImageDataset(list.x[idxs], list.y[idxs], list.getx, list.gety, list.size, set, bs, randperm(length(idxs)))
 end
 
-function get_cuimage_dset(list::LabeledItemList, bs::Int, set::String="train")::ImageDataset
+mutable struct CuImageDataset <: Dataset
+    x
+    y
+    getx
+    gety
+    size::int
+    set::string
+    bs::int
+    randorder
+end
+
+function get_cuimage_dset(list::LabeledItemList, bs::Int, set::String="train")::CuImageDataset
     idxs = getfield(list, Symbol(set))
     getx(il, x) = CuArray(list.getx(il,x))
-    ImageDataset(list.x[idxs], list.y[idxs], getx, list.gety, list.size, set, bs, randperm(length(idxs)))
+    CuImageDataset(list.x[idxs], list.y[idxs], getx, list.gety, list.size, set, bs, randperm(length(idxs)))
 end
