@@ -22,9 +22,9 @@ mutable struct ImageDataset <: Dataset
     y
     getx
     gety
-    size::int
-    set::string
-    bs::int
+    size::Int
+    set::String
+    bs::Int
     randorder
 end
 
@@ -39,9 +39,9 @@ mutable struct CuImageDataset <: Dataset
     y
     getx
     gety
-    size::int
-    set::string
-    bs::int
+    size::Int
+    set::String
+    bs::Int
     randorder
 end
 
